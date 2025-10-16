@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Book Circle Web App" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gradient-to-r from-black via-gray-500 to-white min-h-screen flex items-center justify-center animate-gradient-x">
+    <div class="w-full max-w-6xl mx-auto px-4">
+      <%# Flash messages %>
+      <% if notice %>
+        <div class="mb-4 p-4 bg-green-200 text-green-800 rounded shadow"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="mb-4 p-4 bg-red-200 text-red-800 rounded shadow"><%= alert %></div>
+      <% end %>
+
+      <%# Main content %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
