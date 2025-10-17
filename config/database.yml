@@ -16,8 +16,14 @@ default: &default
   adapter: postgresql
   encoding: unicode
   username: postgres
+<<<<<<< HEAD
   password: 123456
   host: Localhost
+=======
+  password: 12345
+  host: localhost
+
+>>>>>>> public-signup-login
 
 
 development:
