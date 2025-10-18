@@ -6,6 +6,10 @@ export default class extends Controller {
   connect() {
     console.log("Stimulus Hello Controller connected")
     this.hideAllSectionsOnLoad()
+
+    // Add listeners for signup/login toggle
+    document.getElementById("show-login")?.addEventListener("click", this.showLogin.bind(this))
+    document.getElementById("show-signup")?.addEventListener("click", this.showSignup.bind(this))
   }
 
   // Only hide forms initially; keep mainBoxes visible
@@ -25,25 +29,28 @@ export default class extends Controller {
 
   // Show the School / Student options screen
   showSchoolOptions() {
-    this.hideAllSections()
-    this.schoolOptionsTarget.classList.remove("hidden")
+    this.mainBoxesTarget.classList.add("opacity-0")
+    setTimeout(() => {
+      this.mainBoxesTarget.classList.add("hidden")
+      this.schoolOptionsTarget.classList.remove("hidden")
+      setTimeout(() => this.schoolOptionsTarget.classList.remove("opacity-0"), 50)
+    }, 300)
   }
 
-  // Show School Admin signup form
-  showSchoolAdminForm() {
-    this.hideAllSections()
-    this.schoolAdminFormTarget.classList.remove("hidden")
+  showStudentSignup() {
+    this.schoolOptionsTarget.classList.add("hidden")
+    document.getElementById("student-signup").classList.remove("hidden")
   }
 
-  // Show School Admin login form
-  showSchoolAdminLogin() {
-    this.hideAllSections()
-    this.schoolAdminLoginTarget.classList.remove("hidden")
+  showLogin(event) {
+    event.preventDefault()
+    document.getElementById("student-signup").classList.add("hidden")
+    document.getElementById("student-login").classList.remove("hidden")
   }
 
-  // Go back to School / Student options screen
-  backToSchoolOptions() {
-    this.hideAllSections()
-    this.schoolOptionsTarget.classList.remove("hidden")
+  showSignup(event) {
+    event.preventDefault()
+    document.getElementById("student-login").classList.add("hidden")
+    document.getElementById("student-signup").classList.remove("hidden")
   }
 }
