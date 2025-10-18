@@ -1,23 +1,49 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["mainBoxes", "schoolOptions"]
+  static targets = ["mainBoxes", "schoolOptions", "schoolAdminForm", "schoolAdminLogin"]
 
   connect() {
     console.log("Stimulus Hello Controller connected")
+    this.hideAllSectionsOnLoad()
   }
 
+  // Only hide forms initially; keep mainBoxes visible
+  hideAllSectionsOnLoad() {
+    if (this.schoolOptionsTarget) this.schoolOptionsTarget.classList.add("hidden")
+    if (this.schoolAdminFormTarget) this.schoolAdminFormTarget.classList.add("hidden")
+    if (this.schoolAdminLoginTarget) this.schoolAdminLoginTarget.classList.add("hidden")
+  }
+
+  // Hide everything (used when switching between sections)
+  hideAllSections() {
+    if (this.mainBoxesTarget) this.mainBoxesTarget.classList.add("hidden")
+    if (this.schoolOptionsTarget) this.schoolOptionsTarget.classList.add("hidden")
+    if (this.schoolAdminFormTarget) this.schoolAdminFormTarget.classList.add("hidden")
+    if (this.schoolAdminLoginTarget) this.schoolAdminLoginTarget.classList.add("hidden")
+  }
+
+  // Show the School / Student options screen
   showSchoolOptions() {
-    // Hide the main boxes with smooth transition
-    this.mainBoxesTarget.classList.add("opacity-0")
-    setTimeout(() => {
-      this.mainBoxesTarget.classList.add("hidden")
-      
-      // Show school options
-      this.schoolOptionsTarget.classList.remove("hidden")
-      setTimeout(() => {
-        this.schoolOptionsTarget.classList.remove("opacity-0")
-      }, 50) // small delay for smooth fade-in
-    }, 300) // wait for opacity transition
+    this.hideAllSections()
+    this.schoolOptionsTarget.classList.remove("hidden")
+  }
+
+  // Show School Admin signup form
+  showSchoolAdminForm() {
+    this.hideAllSections()
+    this.schoolAdminFormTarget.classList.remove("hidden")
+  }
+
+  // Show School Admin login form
+  showSchoolAdminLogin() {
+    this.hideAllSections()
+    this.schoolAdminLoginTarget.classList.remove("hidden")
+  }
+
+  // Go back to School / Student options screen
+  backToSchoolOptions() {
+    this.hideAllSections()
+    this.schoolOptionsTarget.classList.remove("hidden")
   }
 }
