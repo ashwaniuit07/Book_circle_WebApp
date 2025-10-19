@@ -1,5 +1,5 @@
-<div data-controller="hello public" 
-     class="relative w-full min-h-screen flex flex-col items-center justify-start text-center
+<div data-controller="hello public"
+     class="relative w-full min-h-screen flex flex-col items-center justify-center text-center
             bg-gradient-to-r from-black via-gray-500 to-white overflow-hidden py-16">
 
   <!-- App Description -->
@@ -12,21 +12,10 @@
   </div>
 
   <!-- Step 1: Main Selection Boxes -->
-  <div data-hello-target="mainBoxes" class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl transition-all duration-500 ease-in-out">
-    <!-- Public User -->
-    <%= link_to new_user_registration_path, class: "cursor-pointer bg-gray-800 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105" do %>
-      <h2 class="text-2xl font-bold mb-2">Public User</h2>
-      <p>Browse and purchase books from the community.</p>
-    <% end %>
-
-    <!-- School / Student -->
-    <div data-action="click->hello#showSchoolOptions" class="cursor-pointer bg-gray-800 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
-
-  <!-- Main Selection Boxes -->
   <div data-hello-target="mainBoxes" data-public-target="mainBoxes"
-       class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl transition-all duration-500 ease-in-out z-20 relative">
+       class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl transition-all duration-500 ease-in-out z-20 relative ml-6 mr-6 mt-6">
 
-    <!-- Public -->
+    <!-- Public User -->
     <div data-action="click->public#showSignupForm"
          class="cursor-pointer bg-gray-800 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
       <h2 class="text-2xl font-bold mb-2">Public User</h2>
@@ -36,239 +25,176 @@
     <!-- School / Student -->
     <div data-action="click->hello#showSchoolOptions"
          class="cursor-pointer bg-gray-800 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
-
       <h2 class="text-2xl font-bold mb-2">School / Student</h2>
       <p>Login as school admin or student to manage and share books.</p>
     </div>
   </div>
 
   <!-- Step 2: School Options -->
-  <div data-hello-target="schoolOptions" class="mt-8 hidden grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl transition-all duration-500 ease-in-out">
-    <!-- Student -->
-    <%= link_to new_user_registration_path, class: "cursor-pointer bg-gray-700 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105" do %>
-
-  <!-- School Sub-Options -->
-  <div data-hello-target="schoolOptions" 
+  <div data-hello-target="schoolOptions"
        class="mt-8 hidden grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl transition-all duration-500 ease-in-out opacity-0 z-20 relative">
 
-    <!-- Student Signup -->
+    <!-- Student -->
     <div data-action="click->hello#showStudentSignup"
          class="cursor-pointer bg-gray-700 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
-
       <h2 class="text-2xl font-bold mb-2">Student</h2>
       <p>Signup or login as a student.</p>
     </div>
 
     <!-- School Admin -->
-    <div data-action="click->hello#showSchoolAdminForm" class="cursor-pointer bg-gray-700 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
-
-    <!-- School Admin Signup -->
-    <%= link_to new_user_registration_path(role: "admin"),
-                class: "cursor-pointer bg-gray-700 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105" do %>
-
+    <div data-action="click->hello#showSchoolAdminForm"
+         class="cursor-pointer bg-gray-700 text-white rounded-2xl p-12 shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
       <h2 class="text-2xl font-bold mb-2">School Admin</h2>
       <p>Signup or manage your school admin profile.</p>
     </div>
   </div>
 
-  <!-- Step 3: School Admin Signup Form -->
-  <div data-hello-target="schoolAdminForm" class="mt-8 hidden transition-all duration-500 ease-in-out w-full max-w-2xl relative">
+  <!-- School Admin Signup (unchanged layout) -->
+  <div data-hello-target="schoolAdminForm"
+       class="mt-8 hidden transition-all duration-500 ease-in-out w-full max-w-2xl relative">
     <div class="bg-gray-800 bg-opacity-80 p-8 rounded-2xl shadow-lg">
-      
-      <!-- Top-right Cross Icon -->
-      <button data-action="click->hello#backToSchoolOptions" class="absolute top-3 right-3 text-white text-xl font-bold hover:text-gray-300">✕</button>
-
+      <button data-action="click->hello#backToSchoolOptions"
+              class="absolute top-3 right-3 text-white text-xl font-bold hover:text-gray-300">✕</button>
       <h2 class="text-3xl font-bold text-white mb-6 text-center">School Admin Profile Form</h2>
-
       <%= form_with url: school_admins_path, method: :post, local: true do |f| %>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-          <!-- Official Email ID -->
           <div class="flex flex-col sm:col-span-2">
             <%= f.label :official_email_id, "Official Email ID", class: "text-white mb-1" %>
-            <%= f.email_field :official_email_id, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 w-full" %>
+            <%= f.email_field :official_email_id, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white w-full" %>
           </div>
-
-          <!-- Password -->
           <div class="flex flex-col sm:col-span-2">
             <%= f.label :password, "Password", class: "text-white mb-1" %>
-            <%= f.password_field :password, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 w-full" %>
+            <%= f.password_field :password, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white w-full" %>
           </div>
-
-          <!-- Confirm Password -->
           <div class="flex flex-col sm:col-span-2">
             <%= f.label :password_confirmation, "Confirm Password", class: "text-white mb-1" %>
-            <%= f.password_field :password_confirmation, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 w-full" %>
+            <%= f.password_field :password_confirmation, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white w-full" %>
           </div>
-
-          <!-- UDISE Code -->
           <div class="flex flex-col">
             <%= f.label :udise_code, "UDISE Code", class: "text-white mb-1" %>
-            <%= f.text_field :udise_code, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500" %>
+            <%= f.text_field :udise_code, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white" %>
           </div>
-
-          <!-- School Affiliation Code -->
           <div class="flex flex-col">
             <%= f.label :school_affiliation_code, "School Affiliation Code", class: "text-white mb-1" %>
-            <%= f.text_field :school_affiliation_code, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500" %>
+            <%= f.text_field :school_affiliation_code, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white" %>
           </div>
-
-          <!-- School Name -->
           <div class="flex flex-col sm:col-span-2">
             <%= f.label :school_name, "School Name", class: "text-white mb-1" %>
-            <%= f.text_field :school_name, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 w-full" %>
+            <%= f.text_field :school_name, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white w-full" %>
           </div>
-
-          <!-- City -->
           <div class="flex flex-col">
             <%= f.label :city, "City", class: "text-white mb-1" %>
-            <%= f.text_field :city, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500" %>
+            <%= f.text_field :city, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white" %>
           </div>
-
-          <!-- Location -->
           <div class="flex flex-col">
             <%= f.label :location, "Location", class: "text-white mb-1" %>
-            <%= f.text_field :location, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500" %>
+            <%= f.text_field :location, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white" %>
           </div>
-
-          <!-- State -->
           <div class="flex flex-col sm:col-span-2">
             <%= f.label :state, "State", class: "text-white mb-1" %>
-            <%= f.text_field :state, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 w-full" %>
+            <%= f.text_field :state, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white w-full" %>
           </div>
-
         </div>
-
         <div class="mt-6 text-center">
-          <%= f.submit "Sign Up", class: "px-8 py-3 bg-white text-gray-800 font-semibold rounded-2xl hover:bg-gray-200 transition duration-300" %>
+          <%= f.submit "Sign Up", class: "px-8 py-3 bg-white text-gray-800 font-semibold rounded-2xl hover:bg-gray-200 w-full" %>
         </div>
       <% end %>
-
       <p class="text-sm text-gray-300 mt-4 text-center">
-        Already have an account? 
+        Already have an account?
         <a href="#" class="text-blue-500 underline" data-action="click->hello#showSchoolAdminLogin">Login</a>
       </p>
     </div>
   </div>
 
-  <!-- Step 4: School Admin Login Form -->
-  <div data-hello-target="schoolAdminLogin" class="mt-8 hidden transition-all duration-500 ease-in-out w-full max-w-2xl relative">
-    <div class="bg-gray-800 bg-opacity-80 p-8 rounded-2xl shadow-lg">
-      
-      <!-- Top-right Cross Icon -->
-      <button data-action="click->hello#backToSchoolOptions" class="absolute top-3 right-3 text-white text-xl font-bold hover:text-gray-300">✕</button>
-
-      <h2 class="text-3xl font-bold text-white mb-6 text-center">School Admin Login</h2>
-
-      <%= form_with url: school_admin_login_path, method: :post, local: true do |f| %>
-        <div class="grid grid-cols-1 gap-6">
-          <!-- Official Email ID -->
-          <div class="flex flex-col">
-            <%= f.label :official_email_id, "Official Email ID", class: "text-white mb-1" %>
-            <%= f.email_field :official_email_id, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500" %>
-          </div>
-
-          <!-- Password -->
-          <div class="flex flex-col">
-            <%= f.label :password, "Password", class: "text-white mb-1" %>
-            <%= f.password_field :password, class: "p-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-gray-500" %>
-          </div>
-        </div>
-
-        <div class="mt-6 text-center">
-          <%= f.submit "Login", class: "px-8 py-3 bg-white text-gray-800 font-semibold rounded-2xl hover:bg-gray-200 transition duration-300" %>
-        </div>
-      <% end %>
-
-      <p class="text-sm text-gray-300 mt-4 text-center">
-        Don't have an account? 
-        <a href="#" class="text-blue-500 underline" data-action="click->hello#showSchoolAdminForm">Sign Up</a>
-      </p>
-
-    </div>
-  </div>
-
-  <!-- Student Signup Form -->
-  <div id="student-signup" class="hidden mt-8 bg-gray-800 text-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-4">Student Sign Up</h2>
+  <!-- Student Signup -->
+  <div id="student-signup" data-hello-target="studentSignup"
+       class="hidden mt-10 bg-gray-800 text-white p-10 rounded-2xl shadow-lg w-full max-w-lg mx-auto relative">
+    <button data-action="click->hello#backToSchoolOptions"
+            class="absolute -top-3 -right-3 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold">✕</button>
+    <h2 class="text-2xl font-bold mb-6 text-center">Student Sign Up</h2>
     <%= form_with model: User.new, url: user_registration_path, local: true do |f| %>
-      <div class="mb-4">
-        <%= f.label :name, class: "block mb-1" %>
-        <%= f.text_field :name, class: "w-full p-2 rounded bg-gray-700 border border-gray-600" %>
-      </div>
-      <div class="mb-4">
-        <%= f.label :email, class: "block mb-1" %>
-        <%= f.email_field :email, class: "w-full p-2 rounded bg-gray-700 border border-gray-600" %>
-      </div>
-      <div class="mb-4">
-        <%= f.label :password, class: "block mb-1" %>
-        <%= f.password_field :password, class: "w-full p-2 rounded bg-gray-700 border border-gray-600" %>
-      </div>
-      <div class="mb-4">
-        <%= f.label :password_confirmation, class: "block mb-1" %>
-        <%= f.password_field :password_confirmation, class: "w-full p-2 rounded bg-gray-700 border border-gray-600" %>
+      <div class="space-y-4">
+        <div>
+          <%= f.label :name, class: "block mb-1" %>
+          <%= f.text_field :name, class: "w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white" %>
+        </div>
+        <div>
+          <%= f.label :email, class: "block mb-1" %>
+          <%= f.email_field :email, class: "w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white" %>
+        </div>
+        <div>
+          <%= f.label :password, class: "block mb-1" %>
+          <%= f.password_field :password, class: "w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white" %>
+        </div>
+        <div>
+          <%= f.label :password_confirmation, class: "block mb-1" %>
+          <%= f.password_field :password_confirmation, class: "w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white" %>
+        </div>
       </div>
       <%= f.hidden_field :role, value: "student" %>
-      <%= f.submit "Sign Up", class: "bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-semibold" %>
+      <%= f.submit "Sign Up", class: "bg-white text-gray-800 w-full py-3 mt-5 rounded-2xl font-semibold hover:bg-gray-200" %>
     <% end %>
-    <p class="mt-4 text-sm text-gray-300">
+    <p class="mt-4 text-sm text-gray-300 text-center">
       Already have an account?
-      <a href="#" id="show-login" class="text-blue-400 hover:underline">Login here</a>
+      <a href="#" data-action="click->hello#showStudentLogin" class="text-blue-400 hover:underline">Login here</a>
     </p>
   </div>
 
-  <!-- Student Login Form -->
-  <div id="student-login" class="hidden mt-8 bg-gray-800 text-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-4">Student Login</h2>
+  <!-- Student Login -->
+  <div id="student-login" data-hello-target="studentLogin"
+       class="hidden mt-10 bg-gray-800 text-white p-10 rounded-2xl shadow-lg w-full max-w-lg mx-auto relative">
+    <button data-action="click->hello#backToSchoolOptions"
+            class="absolute -top-3 -right-3 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold">✕</button>
+    <h2 class="text-2xl font-bold mb-6 text-center">Student Login</h2>
     <%= form_with url: user_session_path, local: true do |f| %>
-      <div class="mb-4">
-        <%= f.label :email, class: "block mb-1" %>
-        <%= f.email_field :email, class: "w-full p-2 rounded bg-gray-700 border border-gray-600" %>
+      <div class="space-y-4">
+        <div>
+          <%= f.label :email, class: "block mb-1" %>
+          <%= f.email_field :email, class: "w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white" %>
+        </div>
+        <div>
+          <%= f.label :password, class: "block mb-1" %>
+          <%= f.password_field :password, class: "w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white" %>
+        </div>
       </div>
-      <div class="mb-4">
-        <%= f.label :password, class: "block mb-1" %>
-        <%= f.password_field :password, class: "w-full p-2 rounded bg-gray-700 border border-gray-600" %>
-      </div>
-      <%= f.submit "Login", class: "bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white font-semibold" %>
+      <%= f.submit "Login", class: "bg-green-600 hover:bg-green-700 w-full py-3 mt-5 rounded-2xl font-semibold text-white" %>
     <% end %>
-    <p class="mt-4 text-sm text-gray-300">
+    <p class="mt-4 text-sm text-gray-300 text-center">
       Don’t have an account?
-      <a href="#" id="show-signup" class="text-blue-400 hover:underline">Sign up</a>
+      <a href="#" data-action="click->hello#showStudentSignup" class="text-blue-400 hover:underline">Sign up</a>
     </p>
   </div>
 
-  <!-- Public Form Section -->
+  <!-- Public Forms -->
   <div data-public-target="formSection"
-       class="hidden mt-10 w-full max-w-md bg-gray-900 bg-opacity-90 p-8 rounded-2xl shadow-lg 
-              text-left text-white transition-all duration-500 ease-in-out z-30 relative">
-
-    <!-- Back Button -->
+       class="hidden mt-10 w-full max-w-md bg-gray-900 bg-opacity-90 p-10 rounded-2xl shadow-lg
+              text-left text-white transition-all duration-500 ease-in-out z-30 relative ">
     <button data-action="click->public#closeForm"
-            class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl font-bold">
-      ✕
-    </button>
+            class="absolute -top-3 -right-1 -left-10 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold ">✕</button>
 
-    <!-- Public Sign Up Form -->
+    <!-- Public Signup -->
     <div data-public-target="signupForm">
       <h2 class="text-2xl font-bold mb-6 text-center">Public Signup</h2>
-      <%= form_with(model: User.new, url: user_registration_path, local: true) do |f| %>
-        <div class="mb-4">
-          <%= f.label :name, class: "block mb-1" %>
-          <%= f.text_field :name, class: "w-full p-2 rounded text-black" %>
+      <%= form_with model: User.new, url: user_registration_path, local: true do |f| %>
+        <div class="space-y-4">
+          <div>
+            <%= f.label :name, class: "block mb-1" %>
+            <%= f.text_field :name, class: "w-full p-3 rounded-lg bg-white text-black" %>
+          </div>
+          <div>
+            <%= f.label :email, class: "block mb-1" %>
+            <%= f.email_field :email, class: "w-full p-3 rounded-lg bg-white text-black" %>
+          </div>
+          <div>
+            <%= f.label :password, class: "block mb-1" %>
+            <%= f.password_field :password, class: "w-full p-3 rounded-lg bg-white text-black" %>
+          </div>
+          <div>
+            <%= f.label :password_confirmation, class: "block mb-1" %>
+            <%= f.password_field :password_confirmation, class: "w-full p-3 rounded-lg bg-white text-black" %>
+          </div>
         </div>
-        <div class="mb-4">
-          <%= f.label :email, class: "block mb-1" %>
-          <%= f.email_field :email, class: "w-full p-2 rounded text-black" %>
-        </div>
-        <div class="mb-4">
-          <%= f.label :password, class: "block mb-1" %>
-          <%= f.password_field :password, class: "w-full p-2 rounded text-black" %>
-        </div>
-        <div class="mb-6">
-          <%= f.label :password_confirmation, class: "block mb-1" %>
-          <%= f.password_field :password_confirmation, class: "w-full p-2 rounded text-black" %>
-        </div>
-        <%= f.submit "Sign Up", class: "bg-blue-600 hover:bg-blue-700 w-full py-2 rounded font-semibold" %>
+        <%= f.submit "Sign Up", class: "bg-white text-gray-800 w-full py-3 mt-6 rounded-2xl font-semibold hover:bg-gray-200" %>
       <% end %>
       <p class="mt-4 text-center text-gray-300">
         Already have an account?
@@ -276,25 +202,26 @@
       </p>
     </div>
 
-    <!-- Public Login Form -->
+    <!-- Public Login -->
     <div data-public-target="loginForm" class="hidden">
       <h2 class="text-2xl font-bold mb-6 text-center">Public Login</h2>
-      <%= form_with(url: user_session_path, local: true) do |f| %>
-        <div class="mb-4">
-          <%= f.label :email, class: "block mb-1" %>
-          <%= f.email_field :email, class: "w-full p-2 rounded text-black" %>
+      <%= form_with url: user_session_path, local: true do |f| %>
+        <div class="space-y-4">
+          <div>
+            <%= f.label :email, class: "block mb-1" %>
+            <%= f.email_field :email, class: "w-full p-3 rounded-lg bg-white text-black" %>
+          </div>
+          <div>
+            <%= f.label :password, class: "block mb-1" %>
+            <%= f.password_field :password, class: "w-full p-3 rounded-lg bg-white text-black" %>
+          </div>
         </div>
-        <div class="mb-6">
-          <%= f.label :password, class: "block mb-1" %>
-          <%= f.password_field :password, class: "w-full p-2 rounded text-black" %>
-        </div>
-        <%= f.submit "Login", class: "bg-green-600 hover:bg-green-700 w-full py-2 rounded font-semibold" %>
+        <%= f.submit "Login", class: "bg-green-600 hover:bg-green-700 w-full py-3 mt-6 rounded-2xl font-semibold text-white" %>
       <% end %>
       <p class="mt-4 text-center text-gray-300">
         Don't have an account?
         <span data-action="click->public#showSignupForm" class="text-blue-400 cursor-pointer hover:underline">Sign up</span>
       </p>
     </div>
-
   </div>
 </div>
