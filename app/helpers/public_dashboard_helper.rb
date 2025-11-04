@@ -1,0 +1,2 @@
+module PublicDashboardHelper
+end

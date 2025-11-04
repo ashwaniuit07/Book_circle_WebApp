@@ -49,10 +49,10 @@
     </div>
   </div>
 
-  <!-- School Admin Signup (unchanged layout) -->
+  <!-- School Admin Signup -->
   <div data-hello-target="schoolAdminForm"
        class="mt-8 hidden transition-all duration-500 ease-in-out w-full max-w-2xl relative">
-    <div class="bg-gray-800 bg-opacity-80 p-8 rounded-2xl shadow-lg">
+    <div class="bg-gray-800 bg-opacity-80 p-8 rounded-2xl shadow-lg relative">
       <button data-action="click->hello#backToSchoolOptions"
               class="absolute top-3 right-3 text-white text-xl font-bold hover:text-gray-300">✕</button>
       <h2 class="text-3xl font-bold text-white mb-6 text-center">School Admin Profile Form</h2>
@@ -110,7 +110,7 @@
   <div id="student-signup" data-hello-target="studentSignup"
        class="hidden mt-10 bg-gray-800 text-white p-10 rounded-2xl shadow-lg w-full max-w-lg mx-auto relative">
     <button data-action="click->hello#backToSchoolOptions"
-            class="absolute -top-3 -right-3 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold">✕</button>
+            class="absolute top-3 right-3 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold">✕</button>
     <h2 class="text-2xl font-bold mb-6 text-center">Student Sign Up</h2>
     <%= form_with model: User.new, url: user_registration_path, local: true do |f| %>
       <div class="space-y-4">
@@ -144,7 +144,7 @@
   <div id="student-login" data-hello-target="studentLogin"
        class="hidden mt-10 bg-gray-800 text-white p-10 rounded-2xl shadow-lg w-full max-w-lg mx-auto relative">
     <button data-action="click->hello#backToSchoolOptions"
-            class="absolute -top-3 -right-3 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold">✕</button>
+            class="absolute top-3 right-3 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold">✕</button>
     <h2 class="text-2xl font-bold mb-6 text-center">Student Login</h2>
     <%= form_with url: user_session_path, local: true do |f| %>
       <div class="space-y-4">
@@ -168,19 +168,15 @@
   <!-- Public Forms -->
   <div data-public-target="formSection"
        class="hidden mt-10 w-full max-w-md bg-gray-900 bg-opacity-90 p-10 rounded-2xl shadow-lg
-              text-left text-white transition-all duration-500 ease-in-out z-30 relative ">
+              text-left text-white transition-all duration-500 ease-in-out z-30 relative">
     <button data-action="click->public#closeForm"
-            class="absolute -top-3 -right-1 -left-10 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold ">✕</button>
+            class="absolute top-3 right-3 bg-gray-600 hover:bg-gray-500 rounded-full p-2 text-white text-sm font-bold">✕</button>
 
     <!-- Public Signup -->
     <div data-public-target="signupForm">
       <h2 class="text-2xl font-bold mb-6 text-center">Public Signup</h2>
-      <%= form_with model: User.new, url: user_registration_path, local: true do |f| %>
+      <%= form_with model: PublicUser.new, url: public_user_registration_path, local: true do |f| %>
         <div class="space-y-4">
-          <div>
-            <%= f.label :name, class: "block mb-1" %>
-            <%= f.text_field :name, class: "w-full p-3 rounded-lg bg-white text-black" %>
-          </div>
           <div>
             <%= f.label :email, class: "block mb-1" %>
             <%= f.email_field :email, class: "w-full p-3 rounded-lg bg-white text-black" %>
@@ -205,7 +201,7 @@
     <!-- Public Login -->
     <div data-public-target="loginForm" class="hidden">
       <h2 class="text-2xl font-bold mb-6 text-center">Public Login</h2>
-      <%= form_with url: user_session_path, local: true do |f| %>
+      <%= form_with scope: :public_user, url: public_user_session_path, local: true do |f| %>
         <div class="space-y-4">
           <div>
             <%= f.label :email, class: "block mb-1" %>

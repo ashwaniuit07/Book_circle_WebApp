@@ -1,0 +1,30 @@
+<div class="min-h-screen bg-gray-100 flex flex-col items-center py-10">
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
+    <h1 class="text-3xl font-bold mb-6 text-center">Welcome, <%= @public_user.name || "User" %> 👋</h1>
+
+    <% if @public_user.profile_picture.attached? %>
+      <div class="flex justify-center mb-4">
+        <%= image_tag @public_user.profile_picture, class: "w-24 h-24 rounded-full object-cover" %>
+      </div>
+    <% else %>
+      <div class="flex justify-center mb-4">
+        <div class="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">No Image</div>
+      </div>
+    <% end %>
+
+    <div class="text-gray-700 text-lg space-y-2">
+      <p><strong>Name:</strong> <%= @public_user.name || "Not added yet" %></p>
+      <p><strong>Email:</strong> <%= @public_user.email %></p>
+      <p><strong>Phone:</strong> <%= @public_user.phone || "Not added yet" %></p>
+      <p><strong>Address:</strong> <%= @public_user.address || "Not added yet" %></p>
+      <p><strong>City:</strong> <%= @public_user.city || "Not added yet" %></p>
+      <p><strong>State:</strong> <%= @public_user.state || "Not added yet" %></p>
+      <p><strong>Pincode:</strong> <%= @public_user.pincode || "Not added yet" %></p>
+    </div>
+
+    <div class="mt-6 flex justify-between">
+      <%= link_to "Edit Profile", edit_public_dashboard_path, class: "bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg" %>
+      <%= link_to "Logout", destroy_public_user_session_path, method: :delete, class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg" %>
+    </div>
+  </div>
+</div>
