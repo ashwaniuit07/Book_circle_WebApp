@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # Route for school admins (needed for your homepage form)
-  resources :school_admins, only: [ :new, :create ]
-
-  # Add login routes for School Admin
-  # POST route to handle login submission
+  resources :school_admins, only: [:new, :create]
   post "school_admin/login", to: "school_admins#login", as: "school_admin_login"
-
-  # Optional GET route if you want a separate login page
   get "school_admin/login", to: "school_admins#login_form", as: "school_admin_login_form"
 
-  # Health check
   get "up" => "rails/health#show", as: :rails_health_check
+  
+  namespace :api do
+    get "schools", to: "schools#index"
+  end
 
-  # Root path
+   post "save_generated_code", to: "school_admins#save_generated_code"
+
+  get "generate_code", to: "home#generate_code"
+
   root to: "home#index"
 end
