@@ -1,0 +1,5 @@
+<!-- app/assets/images/eye-off.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#6B7280" stroke-width="1.8">
+  <path stroke-linecap="round" stroke-linejoin="round"
+    d="M3 3l18 18M10.584 10.587A3 3 0 0112 9c1.657 0 3 1.343 3 3a3 3 0 01-.586 1.715M9.88 9.88C8.719 10.567 8 11.702 8 13c0 1.657 1.343 3 3 3 1.298 0 2.433-.72 3.12-1.88M21 12s-4.5 7.5-9 7.5S3 12 3 12s4.5-7.5 9-7.5S21 12 21 12z" />
+</svg>

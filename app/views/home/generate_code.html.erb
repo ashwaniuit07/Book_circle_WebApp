@@ -1,0 +1,20 @@
+<div data-controller="hello"
+     class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white p-10">
+
+  <div class="bg-gray-800 bg-opacity-70 backdrop-blur-lg p-8 rounded-2xl shadow-xl text-center max-w-md w-full">
+    <h1 class="text-3xl font-bold mb-6">Generate School Code</h1>
+
+    <!-- Non-editable code input -->
+    <input id="generatedCode"
+           type="text"
+           readonly
+           class="w-full px-4 py-3 rounded-lg border border-gray-600 text-center bg-gray-900 text-gray-200 mb-6 focus:outline-none cursor-not-allowed"
+           placeholder="Your code will appear here..." />
+
+    <!-- Generate button -->
+    <button id="generateBtn"
+            class="w-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg">
+      Generate Code
+    </button>
+  </div>
+</div>
